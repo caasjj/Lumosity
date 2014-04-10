@@ -1,0 +1,11 @@
+{
+  "generator-famous": {
+    "projectName": "Lumosity",
+    "projectDesc": "Lumosity demo done in famo.us",
+    "authorLogin": "caasjj",
+    "author": {
+      "name": "Walid Hosseini",
+      "email": "caasjj@gmail.com"
+    }
+  }
+}
