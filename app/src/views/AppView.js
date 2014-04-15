@@ -6,14 +6,14 @@ define(function(require, exports, module) {
   var IntroView      = require('views/IntroView');
   var ScoreboardView = require('views/ScoreboardView');
 
-  function AppView(){
+  function AppView() {
     View.apply(this, arguments);
 
     this.introView = new IntroView({
       perspective: this.options.perspective
     });
 
-    this._add( this.introView );
+    this._add(this.introView);
 
     this.scoreboardView = new ScoreboardView({
       perspective: this.options.perspective
@@ -29,21 +29,21 @@ define(function(require, exports, module) {
       opacity: 0
     });
 
-    this.fadeInScoreboard = function(){
-      this.scoreboardMod.setOpacity(1, {duration: 200}, 
-        function(){
+    this.fadeInScoreboard = function() {
+      this.scoreboardMod.setOpacity(1, {duration: 200},
+        function() {
           this.scoreboardView.bodyView.showRibbon();
         }.bind(this)
       );
     };
     this._add(this.scoreboardMod).add(this.scoreboardView);
 
-    this.scoreboardView.on('done', function(){
-      this._eventOutput.emit('done'); // console.log('done');
+    this.scoreboardView.on('done', function() {
+      this._eventOutput.emit('done');
     }.bind(this));
 
     this.introView.on('intro-done', function() {
-      this.fadeInScoreboard.call(this);  
+      this.fadeInScoreboard.call(this);
     }.bind(this));
   }
 

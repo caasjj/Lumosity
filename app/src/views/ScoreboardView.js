@@ -6,11 +6,12 @@ define(function(require, exports, module) {
 
   // uses a combination of views below! (not in seperate files.. haha) try: CMD + A, then CMD + (K --> 2)
 
-  function ScoreboardView(){
+  function ScoreboardView() {
+
     View.apply(this, arguments);
 
-    var width = this.options.width
-      , height = this.options.height;
+    var width = this.options.width;
+    var height = this.options.height;
 
     this.headerView = new HeaderView();
     this.headerMod = new Modifier({
@@ -38,7 +39,7 @@ define(function(require, exports, module) {
     // this._add(this.backdropMod).add(this.backdropSurf);
     this._add(this.headerMod).add(this.headerView);
     this._add(this.bodyMod).add(this.bodyView);
-    this.bodyView.on('done', function(){
+    this.bodyView.on('done', function() {
       this._eventOutput.emit('done');
     }.bind(this));
     this._add(this.footerMod).add(this.footerView);
@@ -46,7 +47,7 @@ define(function(require, exports, module) {
 
   ScoreboardView.prototype = Object.create(View.prototype);
   ScoreboardView.prototype.constructor = ScoreboardView;
-  ScoreboardView.prototype.toggleText = function(){
+  ScoreboardView.prototype.toggleText = function() {
     var opacity = this.headerMod.getOpacity();
     function setOpacity(val) {
       this.headerMod.setOpacity(val, {duration:1000});
@@ -64,7 +65,7 @@ define(function(require, exports, module) {
     height: window.innerHeight
   };
 
-  function HeaderView(){
+  function HeaderView() {
     View.apply(this, arguments);
 
     function _createHouse() {
@@ -79,7 +80,7 @@ define(function(require, exports, module) {
       this._add(houseMod).add(houseSurf);
     }
 
-    function _createTitle(){
+    function _createTitle() {
       var titleSurf = new Surface({
         content: 'lumosity',
         properties: {
@@ -172,7 +173,7 @@ define(function(require, exports, module) {
       _createScoreVals.call(this);
     }
 
-    function _createStatus(){
+    function _createStatus() {
       var statusSurf = new Surface({
         content: '25 Equations',
         properties: {
@@ -232,7 +233,7 @@ define(function(require, exports, module) {
       });
       this._add(this.ribbonCoverMod).add(this.ribbonCoverSurf);
 
-      function BadgeView (){
+      function BadgeView() {
         View.apply(this, arguments);
 
         var badgeSurf = new Surface({
@@ -257,12 +258,12 @@ define(function(require, exports, module) {
       this._add(this.badgeViewMod).add(new BadgeView());
     }
 
-    this.showRibbon = function(){
+    this.showRibbon = function() {
       function slideCover() {
         this.ribbonMod.setOpacity(1);
         this.ribbonCoverMod.setTransform(
           Transform.translate(
-            window.innerWidth, height * .7 * .15 + 0 * (height * .7 * .1) - 8, 0), 
+            window.innerWidth, height * .7 * .15 + 0 * (height * .7 * .1) - 8, 0),
             {duration: 800},
             function() {
               this._eventOutput.emit('done');
@@ -275,14 +276,14 @@ define(function(require, exports, module) {
           Transform.multiply(
             Transform.translate(-110, height * .7 * .15 + 0 * (height * .7 * .1) + 8, 0), // how can i extend badgeViewMod's transform/translation? getTransform and getFinaltransform?! halp
             Transform.scale(.8, .8, 1)
-          ), 
+          ),
           {duration:200, curve:'easeOut'},
-          function(){
+          function() {
             this.badgeViewMod.setTransform(
               Transform.multiply(
                 Transform.translate(-110, height * .7 * .15 + 0 * (height * .7 * .1) + 8, 0), // how can i extend badgeViewMod's transform/translation? getTransform and getFinaltransform?! halp
                 Transform.scale(.7, .7, 1)
-              ), 
+              ),
               {duration:100, curve: 'easeIn'}
             );
           }.bind(this)
@@ -293,16 +294,16 @@ define(function(require, exports, module) {
       setTimeout(popBadge.bind(this), 180);
     }.bind(this);
 
-    this.reset = function(){
+    this.reset = function() {
 
-      function _resetCover () {
+      function _resetCover() {
         this.ribbonMod.setOpacity(0);
         this.ribbonCoverMod.setTransform(
           Transform.translate(0, height * .7 * .15 + 0 * (height * .7 * .1) - 8, 0)
         );
       }
 
-      function _resetBadge(){
+      function _resetBadge() {
         this.badgeViewMod.setTransform(
           Transform.multiply(
             Transform.translate(-110, height * .7 * .15 + 0 * (height * .7 * .1) + 8, 0),
@@ -329,11 +330,11 @@ define(function(require, exports, module) {
     height: window.innerHeight
   };
 
-  function FooterView(){
+  function FooterView() {
     View.apply(this, arguments);
 
-    var width = this.options.width
-      , height = this.options.height;
+    var width = this.options.width;
+    var height = this.options.height;
 
     // -------- create backdrop: for development only
     // -------- actually we need it for footerview lol
@@ -360,7 +361,7 @@ define(function(require, exports, module) {
       this._add(buttonMod).add(buttonView);
     }
 
-    function _createReplayButton(){
+    function _createReplayButton() {
       var replaySurf = new Surface({
         content: 'Replay Game',
         properties: {

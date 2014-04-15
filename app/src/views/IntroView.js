@@ -4,7 +4,7 @@ define(function(require, exports, module) {
   var BackgroundShifterView = require('views/BackgroundShifterView');
   var CircleContainerView   = require('views/CircleContainerView');
 
-  function IntroView(){
+  function IntroView() {
     View.apply(this, arguments);
     this.backgroundShifterView = new BackgroundShifterView({
       perspective: this.options.perspective

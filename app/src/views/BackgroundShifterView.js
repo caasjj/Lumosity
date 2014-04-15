@@ -1,6 +1,5 @@
 define(function(require, exports, module) {
-  var View      = require('famous/core/View');
-
+  var View = require('famous/core/View');
   var BackgroundView = require('views/BackgroundView');
 
   // Creates an image background, and a solid color background and allows to switch between
@@ -17,7 +16,7 @@ define(function(require, exports, module) {
   // myBackground.set()
   //
   function BackgroundShifterView() {
-    View.apply( this, arguments);
+    View.apply(this, arguments);
     var width = window.innerWidth;
     var height = window.innerHeight;
     this.solidBackground = new BackgroundView({
@@ -27,7 +26,7 @@ define(function(require, exports, module) {
           }
         }
     });
-    this.imageBackground = new BackgroundView( {
+    this.imageBackground = new BackgroundView({
       surface: {
         content: '<img src="content/images/' + this.options.image + '" width="' + width + '" height="' + height + '">'
       }
@@ -54,7 +53,6 @@ define(function(require, exports, module) {
     image: 'green-background.png',
     color: 'white'
   };
-
 
   module.exports  = BackgroundShifterView;
 });

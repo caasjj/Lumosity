@@ -7,12 +7,12 @@ define(function(require, exports, module) {
 
   function _setImage(image, width, height) {
     if (!height)
-      this.setContent( '<img src="content/images/'+ image + '" width="' + width + '">' );
+      this.setContent('<img src="content/images/'+ image + '" width="' + width + '">');
     else
-      this.setContent( '<img src="content/images/'+ image + '" width="' + width + '" height="' + height + '">' );
+      this.setContent('<img src="content/images/'+ image + '" width="' + width + '" height="' + height + '">');
   }
 
-  function CircleView(){
+  function CircleView() {
     View.apply(this, arguments);
 
     var width = this.options.width;
@@ -40,8 +40,8 @@ define(function(require, exports, module) {
     });
 
     var node = this._add(this.mod);
-    node.add( this.circleFlyInMod ).add( this.circle );
-    node.add( this.wedgeFlyInMod ).add( this.wedge );
+    node.add(this.circleFlyInMod).add(this.circle);
+    node.add(this.wedgeFlyInMod).add(this.wedge);
   }
 
   CircleView.prototype = Object.create(View.prototype);
@@ -49,10 +49,10 @@ define(function(require, exports, module) {
   CircleView.prototype.reset = function() {
     var width = this.options.width;
     var height = this.options.height;
-    this.circleFlyInMod.setTransform( Transform.translate(0,0,this.options.perspective*1.5));
-    this.wedgeFlyInMod.setTransform( Transform.translate(0.1*width, -0.1*height, this.options.perspective*1.5) );
+    this.circleFlyInMod.setTransform(Transform.translate(0,0,this.options.perspective*1.5));
+    this.wedgeFlyInMod.setTransform(Transform.translate(0.1*width, -0.1*height, this.options.perspective*1.5));
     this.mod.setOrigin([.5,.5]);
-    this.mod.setTransform( Transform.scale(1,1,1));
+    this.mod.setTransform(Transform.scale(1,1,1));
   };
 
   CircleView.prototype.animate = function() {
@@ -79,12 +79,13 @@ define(function(require, exports, module) {
   CircleView.prototype.animateZoom = function() {
     this.mod.setTransform(
       Transform.scale(this.options.circleZoom, this.options.circleZoom, 1),
-      { duration: 250,
+      {
+        duration: 250,
         curve: 'linear'
       },
-      function(){
-        Timer.setTimeout( this.animateOrigin.bind(this), 250 );
-      }.bind(this) );
+      function() {
+        Timer.setTimeout(this.animateOrigin.bind(this), 250);
+      }.bind(this));
   };
 
   CircleView.prototype.animateOrigin = function() {
@@ -94,7 +95,7 @@ define(function(require, exports, module) {
         { duration: 500,
           curve: 'linear'
         },
-        function(){
+        function() {
           //this._eventOutput.emit('done');
         }.bind(this));
 
@@ -103,11 +104,10 @@ define(function(require, exports, module) {
       { duration: 500,
         curve: 'linear'
       },
-      function(){
+      function() {
         this._eventOutput.emit('done');
-      }.bind(this) );
+      }.bind(this));
   };
-
 
   CircleView.DEFAULT_OPTIONS = {
     width: 270,

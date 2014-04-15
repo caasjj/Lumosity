@@ -6,7 +6,7 @@ define(function(require) {
   var perspective = 200;
   var simOngoing = false;
 
-  mainContext.setPerspective( perspective );
+  mainContext.setPerspective(perspective);
 
   var appView = new AppView({
     perspective: perspective

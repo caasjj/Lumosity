@@ -6,7 +6,7 @@ define(function(require, exports, module) {
   var BackgroundView = require('views/BackgroundView');
   var CircleView     = require('views/CircleView');
 
-  function CircleContainerView(){
+  function CircleContainerView() {
     View.apply(this, arguments);
 
     var windowWidth = window.innerWidth;
@@ -15,11 +15,11 @@ define(function(require, exports, module) {
     var circleContainerWidth = windowWidth - this.options.widthMargin;
     var circleContainerHeight = windowHeight - this.options.heightMargin;
 
-    this.finalBannerWidth = Math.ceil( circleContainerWidth * 0.5 *
+    this.finalBannerWidth = Math.ceil(circleContainerWidth * 0.5 *
                            this.options.circleZoom * this.options.circleScale +
-                           (this.options.widthMargin) );
+                           (this.options.widthMargin));
 
-    this.blueBackground = new BackgroundView( {
+    this.blueBackground = new BackgroundView({
       surface: {
         content: '<img src="content/images/' + this.options.backgroundImage + '" width="' + windowWidth + '" height="' + windowHeight + '">'
       },
@@ -31,7 +31,6 @@ define(function(require, exports, module) {
       opacity: 0.25
     });
 
-
     this.circleView = new CircleView({
       width: circleContainerWidth,
       height: circleContainerHeight,
@@ -40,7 +39,7 @@ define(function(require, exports, module) {
       circleScale: this.options.circleScale
     });
 
-    this.circleView.on('start-folding', this.foldBackground.bind(this) );
+    this.circleView.on('start-folding', this.foldBackground.bind(this));
 
     this.circleMod = new Modifier({
       size: [circleContainerWidth, circleContainerHeight],

@@ -4,11 +4,11 @@ define(function(require, exports, module) {
   var Modifier = require('famous/core/Modifier');
 
   function BackgroundView() {
-    View.apply( this, arguments);
+    View.apply(this, arguments);
     var windowWidth = window.innerWidth;
     var windowHeight = window.innerHeight;
 
-    this.surface = new Surface( this.options.surface );
+    this.surface = new Surface(this.options.surface);
     this.modifier = new Modifier({
       size: [windowWidth, windowHeight]
     });
