@@ -5,13 +5,15 @@ define(function(require, exports, module) {
   var Transform = require('famous/core/Transform');
   var Timer     = require('famous/utilities/Timer');
 
-  var BackgroundView = require('views/BackgroundView');
+  function _setImage(image, width, height) {
+    if (!height)
+      this.setContent( '<img src="content/images/'+ image + '" width="' + width + '">' );
+    else
+      this.setContent( '<img src="content/images/'+ image + '" width="' + width + '" height="' + height + '">' );
+  }
 
-  var CircleView = function(){
+  function CircleView(){
     View.apply(this, arguments);
-
-    var windowWidth = window.innerWidth;
-    var windowHeight = window.innerHeight;
 
     var width = this.options.width;
     var height = this.options.height;
@@ -22,7 +24,7 @@ define(function(require, exports, module) {
     this.wedge = new Surface();
 
     _setImage.call(this.circle, 'wheel-blue-2.png', this.circleSize);
-    _setImage.call(this.wedge, 'wedge-yellow.png', this.circleSize)
+    _setImage.call(this.wedge, 'wedge-yellow.png', this.circleSize);
 
     this.mod = new Modifier({
       size:[this.circleSize, this.circleSize],
@@ -35,12 +37,12 @@ define(function(require, exports, module) {
 
     this.wedgeFlyInMod = new Modifier({
       transform: Transform.translate(0.1*width, -0.1*height, this.options.perspective*1.5)
-    })
+    });
 
-    var node = this._add( this.mod )
+    var node = this._add(this.mod);
     node.add( this.circleFlyInMod ).add( this.circle );
     node.add( this.wedgeFlyInMod ).add( this.wedge );
-  };
+  }
 
   CircleView.prototype = Object.create(View.prototype);
   CircleView.prototype.constructor = CircleView;
@@ -59,7 +61,7 @@ define(function(require, exports, module) {
       {
         duration: 500,
         curve: 'linear'
-      }, this.animateWedge.bind(this) )
+      }, this.animateWedge.bind(this));
   };
 
   CircleView.prototype.animateWedge = function() {
@@ -71,7 +73,7 @@ define(function(require, exports, module) {
       }, function() {
          this._eventOutput.emit('start');
          this.animateZoom();
-      }.bind(this) )
+      }.bind(this));
   };
 
   CircleView.prototype.animateZoom = function() {
@@ -106,13 +108,6 @@ define(function(require, exports, module) {
       }.bind(this) );
   };
 
-  var _setImage = function(image, width, height) {
-    if (!height) {
-      this.setContent( '<img src="content/images/'+ image + '" width="' + width + '">' );
-    } else {
-      this.setContent( '<img src="content/images/'+ image + '" width="' + width + '" height="' + height + '">' );
-    }
-  }
 
   CircleView.DEFAULT_OPTIONS = {
     width: 270,

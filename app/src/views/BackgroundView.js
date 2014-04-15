@@ -3,7 +3,7 @@ define(function(require, exports, module) {
   var Surface  = require('famous/core/Surface');
   var Modifier = require('famous/core/Modifier');
 
-  var BackgroundView = function() {
+  function BackgroundView() {
     View.apply( this, arguments);
     var windowWidth = window.innerWidth;
     var windowHeight = window.innerHeight;
@@ -12,18 +12,17 @@ define(function(require, exports, module) {
     this.modifier = new Modifier({
       size: [windowWidth, windowHeight]
     });
-    this._add(this.modifier).add(this.surface)
-  };
+    this._add(this.modifier).add(this.surface);
+  }
 
   BackgroundView.prototype = Object.create(View.prototype);
   BackgroundView.prototype.constructor = BackgroundView;
 
   BackgroundView.prototype.display = function(show) {
-    if (show) {
+    if (show)
       this.modifier.setOpacity(1);
-    } else {
+    else
       this.modifier.setOpacity(0);
-    }
   };
 
   BackgroundView.DEFAULT_OPTIONS = {
@@ -33,7 +32,7 @@ define(function(require, exports, module) {
       }
     },
     perspective: 200
-  }
+  };
 
   module.exports = BackgroundView;
 });

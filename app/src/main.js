@@ -1,11 +1,9 @@
-define(function(require, exports, module) {
+define(function(require) {
   var Engine   = require('famous/core/Engine');
-  var Modifier = require('famous/core/Modifier');
   var AppView  = require('views/AppView');
 
   var mainContext = Engine.createContext();
   var perspective = 200;
-  var animated = false;
   var simOngoing = false;
 
   mainContext.setPerspective( perspective );

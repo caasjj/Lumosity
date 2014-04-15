@@ -1,14 +1,12 @@
 define(function(require, exports, module) {
   var View      = require('famous/core/View');
-  var Surface   = require('famous/core/Surface');
   var Modifier  = require('famous/core/Modifier');
   var Transform = require('famous/core/Transform');
-  var Timer     = require('famous/utilities/Timer');
 
   var IntroView      = require('views/IntroView');
   var ScoreboardView = require('views/ScoreboardView');
 
-  var AppView = function(){
+  function AppView(){
     View.apply(this, arguments);
 
     this.introView = new IntroView({
@@ -36,7 +34,7 @@ define(function(require, exports, module) {
         function(){
           this.scoreboardView.bodyView.showRibbon();
         }.bind(this)
-      )
+      );
     };
     this._add(this.scoreboardMod).add(this.scoreboardView);
 
@@ -47,7 +45,7 @@ define(function(require, exports, module) {
     this.introView.on('intro-done', function() {
       this.fadeInScoreboard.call(this);  
     }.bind(this));
-  };
+  }
 
   AppView.prototype = Object.create(View.prototype);
   AppView.prototype.constructor = AppView;

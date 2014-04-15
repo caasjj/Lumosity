@@ -1,13 +1,12 @@
 define(function(require, exports, module) {
   var View      = require('famous/core/View');
-  var Surface   = require('famous/core/Surface');
   var Modifier  = require('famous/core/Modifier');
   var Transform = require('famous/core/Transform');
 
   var BackgroundView = require('views/BackgroundView');
   var CircleView     = require('views/CircleView');
 
-  var CircleContainerView = function(){
+  function CircleContainerView(){
     View.apply(this, arguments);
 
     var windowWidth = window.innerWidth;
@@ -55,7 +54,7 @@ define(function(require, exports, module) {
       this._eventOutput.emit('done');
     }.bind(this));
 
-  };
+  }
 
   CircleContainerView.prototype = Object.create(View.prototype);
   CircleContainerView.prototype.constructor = CircleContainerView;
@@ -65,7 +64,7 @@ define(function(require, exports, module) {
     this.circleView.reset();
   };
 
-  CircleContainerView.prototype.animate = function(cb, transition) {
+  CircleContainerView.prototype.animate = function() {
     this.circleView.animate();
     this.blueBackgroundMod.setOpacity(
       1,
@@ -81,7 +80,7 @@ define(function(require, exports, module) {
         curve: 'linear'
       }
     );
-  }
+  };
 
   CircleContainerView.prototype.foldBackground = function() {
     this._eventOutput.emit('start-folding');
@@ -101,7 +100,7 @@ define(function(require, exports, module) {
     heightMargin: 10,
     circleZoom: 1.1,
     circleScale: 0.25,
-    backgroundImage: 'blue-background.png',
+    backgroundImage: 'blue-background.png'
   };
 
   module.exports = CircleContainerView;

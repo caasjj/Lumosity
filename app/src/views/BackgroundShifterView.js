@@ -1,8 +1,5 @@
 define(function(require, exports, module) {
   var View      = require('famous/core/View');
-  var Surface   = require('famous/core/Surface');
-  var Modifier  = require('famous/core/Modifier');
-  var Transform = require('famous/core/Transform');
 
   var BackgroundView = require('views/BackgroundView');
 
@@ -19,12 +16,10 @@ define(function(require, exports, module) {
   // myBackground.set('solid')  or
   // myBackground.set()
   //
-  var BackgroundShifterView = function() {
+  function BackgroundShifterView() {
     View.apply( this, arguments);
-
     var width = window.innerWidth;
     var height = window.innerHeight;
-
     this.solidBackground = new BackgroundView({
         surface: {
           properties: {
@@ -32,16 +27,14 @@ define(function(require, exports, module) {
           }
         }
     });
-
     this.imageBackground = new BackgroundView( {
       surface: {
         content: '<img src="content/images/' + this.options.image + '" width="' + width + '" height="' + height + '">'
       }
     });
-
     this._add(this.imageBackground);
     this._add(this.solidBackground);
-  };
+  }
 
   BackgroundShifterView.prototype = Object.create(View.prototype);
   BackgroundShifterView.prototype.constructor = BackgroundShifterView;
@@ -51,12 +44,12 @@ define(function(require, exports, module) {
   };
 
   BackgroundShifterView.prototype.set = function(backgroundType) {
-    if (backgroundType==='solid') {
+    if (backgroundType==='solid')
       this.imageBackground.display(false);
-    } else {
+    else
       this.imageBackground.display(true);
-    }
-  }
+  };
+
   BackgroundShifterView.DEFAULT_OPTIONS = {
     image: 'green-background.png',
     color: 'white'
